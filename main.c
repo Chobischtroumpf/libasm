@@ -6,7 +6,7 @@
 /*   By: adorigo <adorigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 09:39:39 by adorigo           #+#    #+#             */
-/*   Updated: 2020/02/28 09:55:00 by adorigo          ###   ########.fr       */
+/*   Updated: 2020/03/02 10:12:54 by adorigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int	main()
 
 	// fd = open("./main.c", O_RDONLY);
 
-	printf("\n%zd\n", ft_write(1,"hey la miff" , 9));
+	printf("ft_write :\n%zd\n", ft_write(888,"hey la miff" , 9));
+	printf("write :\n%zd\n", write(888,"hey la miff" , 9));
 	// close(fd);
 	// fd = open("./main.c", O_RDONLY);
-	// printf("%zd\n", read(fd, d, 100000 ));
-
+	printf("ft_read : \n%zd\n", ft_read(0, d, 10 ));
+	printf("read : \n%zd\n", read(0, d, 10 ));
+	// close(fd);
 
 }

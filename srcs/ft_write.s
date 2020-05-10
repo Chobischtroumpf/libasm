@@ -1,8 +1,8 @@
 global _ft_write
+extern ___error
+
 
 %define F_GETFD 1
-%define SYSCALL_WRITE 0x2000004
-%define SYSCALL_FCNTL 0x200005c
 
 ; int ft_write(int rdi, const void *rsi, size_t rdx);
 _ft_write:
@@ -16,14 +16,14 @@ _ft_write:
 	push rdx
 	push rsi
 	mov  esi, F_GETFD
-	mov  rax, SYSCALL_FCNTL 
+	mov  rax, 0x200005c 
 	syscall
 	pop  rsi
 	pop  rdx
 	cmp  eax, 0
 	jne  FT_WRITE_ERROR
 
-	mov  rax, SYSCALL_WRITE
+	mov  rax, 0x2000004
 	syscall
 	ret
 FT_WRITE_ERROR:

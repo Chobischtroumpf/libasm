@@ -1,5 +1,4 @@
 global _ft_read
-
 %define F_GETFD 1
 %define SYSCALL_READ 0x2000003
 %define SYSCALL_FCNTL 0x200005c

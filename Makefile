@@ -6,7 +6,7 @@
 #    By: adorigo <adorigo@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 03:06:59 by cacharle          #+#    #+#              #
-#    Updated: 2020/04/26 15:38:13 by adorigo          ###   ########.fr        #
+#    Updated: 2020/05/10 13:36:06 by adorigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ fclean:		clean
 re:			fclean all
 
 main:		re bonus
-			@$(CC) -o $(EXE) libasm.a testing/*.c && ./$(EXE)
+			@$(CC) -o $(EXE) libasm.a testing/*.c -fsanitize=address && ./$(EXE)
 
 %.o:		%.s
 			@$(ASM) $(ASFLAGS) $< -o $@

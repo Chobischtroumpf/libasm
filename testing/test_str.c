@@ -60,12 +60,13 @@ int	test_strcmp(void)
 int	test_strdup(void)
 {
 	char	*s;
+	char *str = "hello world !";
 
 	printf("\n--- test strdup VS ft_strdup ---\n\n");
-	s = strdup("hello world!");
+	s = strdup(str);
 	printf("strdup : %s\n", s);
 	free(s);
-	s = ft_strdup("HELLO WORLD!\0");
+	s = ft_strdup(str);
 	printf("ft_strdup : %s\n", s);
 	free(s);
 	return (1);

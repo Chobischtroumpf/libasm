@@ -1,50 +1,32 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_strcmp.s                                        :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: adorigo <adorigo@student.s19.be>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/04/26 11:18:50 by adorigo           #+#    #+#              #
-#    Updated: 2020/04/26 11:21:42 by adorigo          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+global ft_strcmp
 
-global _ft_strcmp
+; int ft_strcmp(const char *s1, const char *s2);
+ft_strcmp:
+	push r12
+	push r13
+	push rcx
+	mov  r12, rdi  ; s1
+	mov  r13, rsi  ; s2
+	mov  rcx, -1   ; index
+FT_STRCMP_LOOP:
+	inc  rcx
+	cmp  byte [r12 + rcx], 0   ; check and of s1
+	je   FT_STRCMP_LOOP_END
+	mov  dl, byte [r12 + rcx]
+	cmp  dl, byte [r13 + rcx]  ; s1[rcx] == s2[rcx]
+	je   FT_STRCMP_LOOP
+FT_STRCMP_LOOP_END:
 
-;int ft_strcmp(rdi, rsi)
-_ft_strcmp:
-	xor			rcx, rcx
-	xor			rdx, rdx
-	cmp			rdi, rsi				; If equal pointers, return 0
-	jz			equal
-	cmp			rdi, 0x0				; If s1 == null, return +1
-	jz			higher
-	cmp			rsi, 0x0				; If s2 == null, return -1
-	jz			lower
+	xor  rax, rax
+	mov  al, byte [r12 + rcx]
+	sub  al, byte [r13 + rcx]
+	jnc  FT_STRCMP_END  ; jump end if no substraction overflow
 
-check:
-	mov		dl, BYTE [rsi + rcx]		; Move S2 to rdx
-	cmp		BYTE [rdi + rcx], dl		; Compare S2 to S1
-	jne		end							; Not equal, yeet out
-	inc		rcx							; Increment pointer
-	jmp		check						; Reloop
+	neg  al   ; negate al to cancel overflow
+	neg  eax  ; negate the whole int since the function returns that type
 
-end:
-	mov		dl, BYTE [rdi + rcx]		; Move char on S1 to rdx
-	sub		dl, BYTE [rsi + rcx]		; Subtract char on S2 from rdx
-	cmp		dl, 0						; If 0, they are equal
-	jl		lower
-	jg		higher
-
-equal:
-	mov			rax, 0
-	ret
-
-higher:
-	mov			rax, 1
-	ret
-
-lower:
-	mov			rax, -1
+FT_STRCMP_END:
+	pop  rcx
+	pop  r13
+	pop  r12
 	ret

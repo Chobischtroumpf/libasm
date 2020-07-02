@@ -6,6 +6,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
+# include <errno.h>
 
 size_t		ft_putstr(char *s);
 size_t		ft_strlen(char *s);

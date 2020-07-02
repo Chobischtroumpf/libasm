@@ -6,7 +6,7 @@
 #    By: adorigo <adorigo@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 03:06:59 by cacharle          #+#    #+#              #
-#    Updated: 2020/05/10 13:36:06 by adorigo          ###   ########.fr        #
+#    Updated: 2020/06/17 09:25:07 by adorigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ NAME		=	libasm.a
 EXE			=    testing/test
 
 ASM			=	nasm
-ASFLAGS		=	-f macho64
-CC			=	gcc
+ASFLAGS			=	-f elf64
+CC			=	clang
 RM			=	rm -rf
 AR			=	ar -rc
 

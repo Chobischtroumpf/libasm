@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strlen
+global ft_strlen
 
-_ft_strlen:
+ft_strlen:
 	mov eax, -1
 FT_STRLEN_LOOP:
 	inc eax

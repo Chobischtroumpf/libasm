@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcpy
+global ft_strcpy
 
 ;char *ft_strcpy(char *dst, const char *src)
-_ft_strcpy:
+ft_strcpy:
 	push rbx
 	push rcx
 	mov rax, rdi ; moving rdi to rax (rdi = dst)

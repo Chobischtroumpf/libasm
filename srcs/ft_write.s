@@ -6,37 +6,14 @@ extern __errno_location
 
 ; int ft_write(int rdi, const void *rsi, size_t rdx);
 ft_write:
-	cmp  rdx, 0
-	je   FT_WRITE_NO_SIZE
-	cmp  rdi, 0
-	jl   FT_WRITE_ERROR_SYS    ; fd < 0
-	cmp  rsi, 0
-	je   FT_WRITE_ERROR_SYS    ; buf == NULL
-
-	push rdx
-	push rsi
-	mov  esi, F_GETFD
-	mov  rax, 72 
-	syscall
-	pop  rsi
-	pop  rdx
-	cmp  eax, 0
-	jne  FT_WRITE_ERROR
-
 	mov  rax, 1
 	syscall
+	jc FT_CHECK_SIGN
 	ret
 
-FT_WRITE_ERROR_SYS:
-	mov rax, 1
-	syscall
-	mov rbx, rax
-	push rbx
-	call __errno_location
-	pop rbx
-	mov [rax], rbx
-	mov rax, -1
-	ret
+FT_CHECK_SIGN:
+	cmp rax, 0
+	jl INVERT_RAX
 
 FT_WRITE_ERROR:
 	mov rbx, rax
@@ -47,6 +24,6 @@ FT_WRITE_ERROR:
 	mov rax, -1
 	ret
 
-FT_WRITE_NO_SIZE:
-	mov  rax, 0
-	ret
+INVERT_RAX:
+	neg rax
+	jmp FT_WRITE_ERROR

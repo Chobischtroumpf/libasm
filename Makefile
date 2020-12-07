@@ -46,7 +46,7 @@ fclean:		clean
 re:			fclean all
 
 main:		re bonus
-			@$(CC) -o $(EXE) libasm.a testing/*.c -fsanitize=address && ./$(EXE)
+			@$(CC) -o $(EXE) libasm.a testing/*.c -lasm -fsanitize=address -L./ && ./$(EXE)
 
 %.o:		%.s
 			@$(ASM) $(ASFLAGS) $< -o $@
